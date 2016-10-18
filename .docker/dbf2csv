@@ -1,0 +1,42 @@
+#!/usr/bin/env python
+# coding: utf-8
+import csv
+import glob
+import logging
+import argparse
+from os import path, getcwd
+
+from dbfpy import dbf
+
+log = logging.getLogger()
+log.setLevel(logging.DEBUG)
+log.addHandler(logging.StreamHandler())
+
+parser = argparse.ArgumentParser()
+parser.add_argument('-i', '--input', default=getcwd(),
+                    help="Input directory with *.dbf files")
+parser.add_argument("-o", "--output", default=getcwd(),
+                    help="Output directory for save *.csv files")
+args = parser.parse_args()
+
+for input_file_path in glob.glob('{}/*.dbf'.format(args.input)):
+    output_file_path = "{}/{}.csv".format(
+        args.output,
+        path.splitext(path.basename(input_file_path))[0]
+    )
+
+    with open(output_file_path, 'wb') as output_file:
+        input_reader = dbf.Dbf(input_file_path)
+        output_writer = csv.writer(output_file)
+
+        output_writer.writerow(
+            [field.name for field in input_reader.header.fields]
+        )
+        for record in input_reader:
+            output_writer.writerow(
+                [cell.decode('cp866').encode('utf-8') for cell in record.fieldData]
+            )
+
+        input_reader.close()
+
+    log.debug("{} -> {}: OK".format(input_file_path, output_file_path))
