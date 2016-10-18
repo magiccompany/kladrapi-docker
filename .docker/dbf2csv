@@ -6,7 +6,7 @@ import logging
 import argparse
 from os import path, getcwd
 
-from dbfpy import dbf
+from dbfread import DBF
 
 log = logging.getLogger()
 log.setLevel(logging.DEBUG)
@@ -26,17 +26,13 @@ for input_file_path in glob.glob('{}/*.dbf'.format(args.input)):
     )
 
     with open(output_file_path, 'wb') as output_file:
-        input_reader = dbf.Dbf(input_file_path)
+        input_reader = DBF(input_file_path, encoding='cp866')
         output_writer = csv.writer(output_file)
 
-        output_writer.writerow(
-            [field.name for field in input_reader.header.fields]
-        )
+        output_writer.writerow(input_reader.field_names)
         for record in input_reader:
             output_writer.writerow(
-                [cell.decode('cp866').encode('utf-8') for cell in record.fieldData]
+                [value.encode('utf-8') for value in record.values()]
             )
-
-        input_reader.close()
 
     log.debug("{} -> {}: OK".format(input_file_path, output_file_path))
