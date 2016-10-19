@@ -50,7 +50,7 @@ namespace Kladr\Core {
          */
         public function registerServices(\Phalcon\DiInterface $di)
         {
-            $config = new \Phalcon\Config\Adapter\Ini(__DIR__ . '/config/config.ini');
+            $config = new \Phalcon\Config\Adapter\Ini(__DIR__ . '/config/config.ini', INI_SCANNER_NORMAL);
 
             // Set site config
             $di->set('config', $config);

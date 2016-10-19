@@ -2,6 +2,9 @@
 
 error_reporting(0);
 
+define('MONGO_HOST', getenv('MONGO_HOST'));
+define('MONGO_DB', getenv('MONGO_DB'));
+
 use Phalcon\Mvc\Router,
     Phalcon\Mvc\Application,
     Phalcon\DI\FactoryDefault,
