@@ -7,7 +7,6 @@ build:
 	if [ -f composer.json ]; then \
 		composer install; \
 	fi;
-	cp .docker/dbf2csv /usr/bin/
 	chmod a+x .
 
 build-image:
