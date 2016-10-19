@@ -92,7 +92,7 @@ class Loader
      */
     protected function ReadLine()
     {
-        return fgetcsv($this->file, 0, ';');
+        return fgetcsv($this->file, 0, ',', '"');
     }
 
     /**
