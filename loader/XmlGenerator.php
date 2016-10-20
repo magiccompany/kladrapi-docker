@@ -5,7 +5,8 @@
  * @author Y. Lichutin
  */
 
-$connectString = 'mongodb://127.0.0.1:27017';
+$host = getenv('MONGO_HOST');
+$connectString = 'mongodb://'.$host.':27017';
 MongoCursor::$timeout = -1;
 
 try {

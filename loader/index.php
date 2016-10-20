@@ -5,10 +5,12 @@ error_reporting(0);
 //CLI Mode
 $_SERVER["DOCUMENT_ROOT"] = dirname(dirname(__FILE__));
 
+$host = getenv('MONGO_HOST');
+
 // Папка с файлами БД КЛАДР сконвертированными в формат csv
 define('UPLOAD_DIR', $_SERVER["DOCUMENT_ROOT"].'/files/');
 //define('UPLOAD_DIR', $_SERVER["DOCUMENT_ROOT"].'/files_local/');
-define('CONNECT',  'mongodb://xcom-mongo:27017');
+define('CONNECT',  'mongodb://'.$host.':27017');
 
 require $_SERVER["DOCUMENT_ROOT"] . '/loader/tools.php';
 require $_SERVER["DOCUMENT_ROOT"] . '/loader/include.php';
