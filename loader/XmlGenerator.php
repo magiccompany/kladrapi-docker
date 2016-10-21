@@ -31,7 +31,7 @@ try {
  */
 function xmlGenerate(MongoDb $db)
 {
-    $path = "c:/temp/elements.xml";
+    $path = "/var/sphinxsearch/xmlsources/elements.xml";
     $complex = $db->complex;
     
     $elements = $complex->find(array(), array(
