@@ -4,6 +4,7 @@ error_reporting(0);
 
 define('MONGO_HOST', getenv('MONGO_HOST'));
 define('MONGO_DB', getenv('MONGO_DB'));
+define('SPHINX_HOST', getenv('SPHINX_HOST'));
 
 use Phalcon\Mvc\Router,
     Phalcon\Mvc\Application,
