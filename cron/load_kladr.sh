@@ -15,7 +15,7 @@ if_error_echo "load archive is failed"
 7z e -y kladr.7z && rm kladr.7z
 if_error_echo "extracting failed"
 
-dbf2csv -o ../files && cd .. && rm -rf tmp
+dbf2csv . ../files -ie=cp866 && cd .. && rm -rf tmp
 
 php -f loader/index.php
 if_error_echo "executing php script failed"
