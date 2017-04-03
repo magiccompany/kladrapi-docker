@@ -9,7 +9,7 @@ if_error_echo () {
 }
 
 cd ..; mkdir tmp; cd tmp
-curl -s "http://www.gnivc.ru/html/gnivcsoft/KLADR/Base.7z" > kladr.7z
+curl -s "https://www.gnivc.ru/html/gnivcsoft/KLADR/Base.7z" > kladr.7z
 if_error_echo "load archive is failed"
 
 7z e -y kladr.7z && rm kladr.7z

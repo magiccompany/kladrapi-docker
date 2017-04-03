@@ -6,4 +6,4 @@ RUN apt-get update \
     && easy_install dbfread
 
 COPY . /var/www
-COPY .docker/dbf2csv /usr/bin/
+RUN easy_install dbf2csv
